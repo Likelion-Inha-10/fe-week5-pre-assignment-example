@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Owner from "./pages/Owner";
+import Article from "./pages/Article";
+import EditArticle from "./pages/EditArticle";
+import NotFound from "./pages/NotFound";
+import CreateArticle from "./pages/CreateArticle";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/:ownerId" element={<Owner />} />
+        <Route path="/:ownerId/create" element={<CreateArticle />} />
+        <Route path="/:ownerId/:articleId" element={<Article />} />
+        <Route path="/:ownerId/:articleId/edit" element={<EditArticle />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
